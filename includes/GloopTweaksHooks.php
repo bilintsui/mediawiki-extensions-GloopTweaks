@@ -397,10 +397,10 @@ class GloopTweaksHooks {
 	* Add purging for global robots.txt, well-known URLs, and hashless images.
 	*/
 	public static function onTitleSquidURLs( Title $title, array &$urls ) {
-		global $wgCanonicalServer, $wgGloopTweaksCentralDB, $wgDBname;
+		global $wgCanonicalServer, $wgGloopTweaksNetworkCentralDB, $wgDBname;
 		$dbkey = $title->getPrefixedDBKey();
 		// MediaWiki:Robots.txt on metawiki is global.
-		if ( $wgDBname === $wgGloopTweaksCentralDB && $dbkey === 'MediaWiki:Robots.txt' ) {
+		if ( $wgDBname === $wgGloopTweaksNetworkCentralDB && $dbkey === 'MediaWiki:Robots.txt' ) {
 			// Purge each wiki's /robots.txt route.
 			foreach( WikiMap::getCanonicalServerInfoForAllWikis() as $serverInfo ) {
 				$urls[] = $serverInfo['url'] . '/robots.txt';

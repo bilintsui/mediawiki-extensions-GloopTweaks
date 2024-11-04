@@ -15,11 +15,11 @@ class FixedWidthStyleModule extends ResourceLoaderSiteStylesModule {
 	 * @since 1.32 added the $context parameter
 	 */
 	protected function getContent( $titleText, ResourceLoaderContext $context ) {
-		global $wgGloopTweaksCentralDB;
+		global $wgGloopTweaksFamilyCentralDB;
 		$services = MediaWikiServices::getInstance();
 
 		$title = $services->getTitleParser()->parseTitle( $titleText );
-		$store = $services->getRevisionStoreFactory()->getRevisionStore( $wgGloopTweaksCentralDB );
+		$store = $services->getRevisionStoreFactory()->getRevisionStore( $wgGloopTweaksFamilyCentralDB );
 		$rev = $store->getRevisionByTitle( $title );
 
 		$content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;
@@ -39,12 +39,12 @@ class FixedWidthStyleModule extends ResourceLoaderSiteStylesModule {
 		return $content->serialize( $format );
 	}
 
-	// Override getDB() to use metawiki rather than having a per-wiki MediaWiki:Vector-fixedwidth.css.
+	// Override getDB() to use family main wiki rather than having a per-wiki MediaWiki:Vector-fixedwidth.css.
 	protected function getDB() {
-		global $wgGloopTweaksCentralDB;
+		global $wgGloopTweaksFamilyCentralDB;
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lb = $lbFactory->getMainLB( $wgGloopTweaksCentralDB );
-		return $lb->getConnectionRef( DB_REPLICA, [], $wgGloopTweaksCentralDB );
+		$lb = $lbFactory->getMainLB( $wgGloopTweaksFamilyCentralDB );
+		return $lb->getConnectionRef( DB_REPLICA, [], $wgGloopTweaksFamilyCentralDB );
 	}
 
 	/**

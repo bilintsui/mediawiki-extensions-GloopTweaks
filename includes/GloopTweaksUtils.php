@@ -10,11 +10,11 @@ use Wikimedia\AtEase\AtEase;
 class GloopTweaksUtils {
 	// Retrieve Special:Contact filter text from central DB.
 	private static function getContactFilterText() {
-		global $wgGloopTweaksCentralDB;
+		global $wgGloopTweaksNetworkCentralDB;
 		$services = MediaWikiServices::getInstance();
 
 		$title = $services->getTitleParser()->parseTitle( 'MediaWiki:Weirdgloop-contact-filter' );
-		$store = $services->getRevisionStoreFactory()->getRevisionStore( $wgGloopTweaksCentralDB );
+		$store = $services->getRevisionStoreFactory()->getRevisionStore( $wgGloopTweaksNetworkCentralDB );
 		$rev = $store->getRevisionByTitle( $title );
 
 		$content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;

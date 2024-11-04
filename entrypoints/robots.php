@@ -12,7 +12,7 @@ require dirname($_SERVER['SCRIPT_FILENAME']) . '/includes/WebStart.php';
 wfRobotsMain();
 
 function wfRobotsMain() {
-    global $wgGloopTweaksCentralDB, $wgCanonicalServer, $wgScriptPath, $wgArticlePath, $wgGloopTweaksNoRobots, $wgNamespaceRobotPolicies;
+    global $wgGloopTweaksNetworkCentralDB, $wgCanonicalServer, $wgScriptPath, $wgArticlePath, $wgGloopTweaksNoRobots, $wgNamespaceRobotPolicies;
 
     if ( $wgGloopTweaksNoRobots ) {
         header( 'Cache-Control: max-age=300, must-revalidate, s-maxage=300, revalidate-while-stale=300' );
@@ -24,11 +24,18 @@ function wfRobotsMain() {
     $services = MediaWikiServices::getInstance();
 
     $title = $services->getTitleParser()->parseTitle( 'MediaWiki:Robots.txt' );
-    $store = $services->getRevisionStoreFactory()->getRevisionStore( $wgGloopTweaksCentralDB );
+    $store = $services->getRevisionStoreFactory()->getRevisionStore( $wgGloopTweaksNetworkCentralDB );
     $rev = $store->getRevisionByTitle( $title );
     $content = $rev ? $rev->getContent( SlotRecord::MAIN ) : null;
     $lastModified = $rev ? $rev->getTimestamp() : null;
     $text = ( $content instanceof TextContent ) ? $content->getText() : '';
+
+    // Replace template strings on imported text
+    $text = str_replace(
+        [ '{articlePath}', '{scriptPath}' ],
+        [ $wgArticlePath, $wgScriptPath ],
+        $text
+    );
 
     // Disallow noindexed namespaces in robots.txt as well.
     $contLang = $services->getContentLanguage();

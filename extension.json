@@ -2,7 +2,7 @@
 	"name": "GloopTweaks",
 	"version": "1.1.0",
 	"author": [
-		"[https://twitter.com/jaydenkieran Jayden Bailey]",
+		"[https://github.com/jayktaylor Jayden Bailey]",
 		"TehKittyCat",
 		"..."
 	],
@@ -84,8 +84,13 @@
 		"AnalyticsID": {
 			"value": ""
 		},
-		"CentralDB": {
-			"value": "metawiki"
+		"FamilyCentralDB": {
+			"value": "",
+			"description": "The database name of the central wiki in the family. Typically, this is something like en_rswiki."
+		},
+		"NetworkCentralDB": {
+			"value": "metawiki",
+			"description": "The database name of the Weird Gloop central wiki, which is metawiki, but can be changed."
 		},
 		"CFToken": {
 			"value": ""
