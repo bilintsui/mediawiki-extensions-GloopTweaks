@@ -28,6 +28,8 @@
 	"group-cats-member": "{{GENDER:$1|CATS member}}",
 	"group-directors": "Directors",
 	"group-directors-member": "{{GENDER:$1|director}}",
+	"right-directoreditprotected": "Edit pages protected as \"{{int:protect-level-directoreditprotected}}\"",
+	"protect-level-directoreditprotected": "Allow only directors",
 	"group-global-interface-maintainer": "Global interface maintainers",
 	"group-global-interface-maintainer-member": "{{GENDER:$1|global interface maintainer}}",
 	"group-patrollers": "Patrollers",
