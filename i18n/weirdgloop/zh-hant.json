@@ -50,7 +50,7 @@
 	"right-directoreditprotected": "編輯保護層級為「{{int:protect-level-directoreditprotected}}」的頁面",
 	"right-editstaff": "編輯保護層級為「{{int:protect-level-editstaff}}」的頁面",
 	"action-directoreditprotected": "編輯保護層級為「{{int:protect-level-directoreditprotected}}」的頁面",
-	"action-editstaff": "編輯保護層級為「“{{int:protect-level-editstaff}}”」的頁面",
+	"action-editstaff": "編輯保護層級為「{{int:protect-level-editstaff}}」的頁面",
 	"protect-level-directoreditprotected": "僅允許嚮導",
 	"protect-level-editstaff": "僅允許職員",
 	"group-jagex": "Jagex",
